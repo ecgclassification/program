@@ -1,4 +1,5 @@
 import xlrd
+import numpy as np
 from random import randrange
 from random import random
 
@@ -7,16 +8,17 @@ from math import exp
 
 #input matrix
 ip = np.empty((20,30))
-file_location = r'SET1DCT.xls'
+file_location = r'I:\Git Hub\ECG clssi\ECG code\training_and_testing 1.xlsx'
 workbook = xlrd.open_workbook(file_location)
 first_sheet = workbook.sheet_by_index(0)
 for j in range (0,20):
   xi= [first_sheet.cell_value(j,i) for i in range (30)]
-  #print xi
+  print xi
   ip[j,:]=(xi)
 #isize=np.shape(xi)
 #print ip
 
+'''
 #output matrix
 op = np.empty((200,3))
 
@@ -184,3 +186,4 @@ n_hidden = 5
 scores = evaluate_algorithm(ip, back_propagation, n_folds, l_rate, n_epoch, n_hidden)
 print('Scores: %s' % scores)
 print('Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores))))
+'''
