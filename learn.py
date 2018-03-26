@@ -153,34 +153,39 @@ def dsigmoid(y):
 
 
 def main():
-	# take the input pattern as a map. Suppose we are working for AND gate.
-	#input matrix
-        ip = np.empty((20,30))
-        file_location = r'I:\Git Hub\ECG clssi\ECG code\training_and_testing 1.xlsx'
+        file_location = r'I:\Git Hub\ECG clssi\ECG code\training_and_testing.xlsx'
+        workbook = xlrd.open_workbook(file_location)
+        #input matrix
+        ip = np.empty((200,30))
+        file_location = r'training_and_testing.xlsx'
         workbook = xlrd.open_workbook(file_location)
         first_sheet = workbook.sheet_by_index(0)
+        for j in range (0,200):
+                xi= [first_sheet.cell_value(j,i) for i in range (30)]
+                print xi
+                ip[j,:]=(xi)
+        #isize=np.shape(xi)
+        #print ip
+        #output matrix
+        op = np.empty((200,3))
+        file_location = r'training_and_testing.xlsx'
+        workbook = xlrd.open_workbook(file_location)
+        second_sheet = workbook.sheet_by_index(1)
         for j in range (0,20):
-          xi= [first_sheet.cell_value(j,i) for i in range (30)]
-          #print ip
-          ip[j,:]=(xi)
-
-          tp = np.empty((10,3))
-        file_location = r'I:\Git Hub\ECG clssi\ECG code\training_and_testing 1 target.xlsx'
-        workbook = xlrd.open_workbook(file_location)
-        first_sheet = workbook.sheet_by_index(0)
-        for j in range (0,11):
-          xo= [first_sheet.cell_value(j,i) for i in range (3)]
-          print tp
-          tp[j,:]=(xo)
-
-	#pat = Xi
+                xo= [second_sheet.cell_value(j,i) for i in range (3)]
+                print xo
+                op[j,:]=(xo)
+        #osize=np.shape(xo)
+        #print osize
+        #pat = Xi
 	#[
 		#[[.6,.8,0], [0.9]],
 		#[[1,2,2], [1]],
 		#[[0,3,1], [1]],
 		
 	#]
-'''	newNeural = Neural(ip)
+        '''
+	newNeural = Neural(ip)
 	newNeural.trainNetwork(ip)
 '''
 if __name__ == "__main__":

@@ -18,7 +18,7 @@ workbook = xlrd.open_workbook(file_location)
 first_sheet = workbook.sheet_by_index(0)
 for j in range (0,200):
   xi= [first_sheet.cell_value(j,i) for i in range (30)]
-  #print xi
+  print xi
   ip[j,:]=(xi)
 #isize=np.shape(xi)
 #print ip
@@ -31,7 +31,7 @@ workbook = xlrd.open_workbook(file_location)
 second_sheet = workbook.sheet_by_index(1)
 for j in range (0,20):
   xo= [second_sheet.cell_value(j,i) for i in range (3)]
- # print xo
+  print xo
   op[j,:]=(xo)
 #osize=np.shape(xo)
 #print osize
