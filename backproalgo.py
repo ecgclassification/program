@@ -16,7 +16,7 @@ ip = np.empty((200,30))
 file_location = r'training_and_testing.xlsx'
 workbook = xlrd.open_workbook(file_location)
 first_sheet = workbook.sheet_by_index(0)
-for j in range (0,20):
+for j in range (0,200):
   xi= [first_sheet.cell_value(j,i) for i in range (30)]
   #print xi
   ip[j,:]=(xi)

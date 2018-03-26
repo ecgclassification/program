@@ -6,18 +6,18 @@ import numpy as np
 
 class Neural:
 	def __init__(self, pattern):
-		#
-		# Lets take 2 input nodes, 3 hidden nodes and 1 output node.
-		# Hence, Number of nodes in input(ni)=2, hidden(nh)=3, output(no)=1.
-		#
+		
+		# Lets take 3 input nodes, 3 hidden nodes and 1 output node.
+		# Hence, Number of nodes in input(ni)=3, hidden(nh)=3, output(no)=1.
+		
 		self.ni=3
 		self.nh=3
 		self.no=1
 
-		#
+		
 		# Now we need node weights. We'll make a two dimensional array that maps node from one layer to the next.
 		# i-th node of one layer to j-th node of the next.
-		#
+		
 		self.wih = []
 		for i in range(self.ni):
 			self.wih.append([0.0]*self.nh)
@@ -26,23 +26,23 @@ class Neural:
 		for j in range(self.nh):
 			self.who.append([0.0]*self.no)
 
-		#
+		
 		# Now that weight matrices are created, make the activation matrices.
-		#
+		
 		self.ai, self.ah, self.ao = [],[],[]
 		self.ai=[1.0]*self.ni
 		self.ah=[1.0]*self.nh
 		self.ao=[1.0]*self.no
 
-		#
+		
 		# To ensure node weights are randomly assigned, with some bounds on values, we pass it through randomizeMatrix()
-		#
+		
 		randomizeMatrix(self.wih,-0.2,0.2)
 		randomizeMatrix(self.who,-2.0,2.0)
 
-		#
+		
 		# To incorporate momentum factor, introduce another array for the 'previous change'.
-		#
+		
 		self.cih = []
 		self.cho = []
 		for i in range(self.ni):
@@ -101,9 +101,9 @@ class Neural:
 		for i in range(self.ni-1):
 			self.ai[i]=feed[i]
 
-		#
+		
 		# Calculate the activations of each successive layer's nodes.
-		#
+		
 		for j in range(self.nh):
 			sum=0.0
 			for i in range(self.ni):
