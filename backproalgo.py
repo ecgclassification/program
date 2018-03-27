@@ -20,6 +20,8 @@ for j in range (0,200):
   xi= [first_sheet.cell_value(j,i) for i in range (30)]
   print xi
   ip[j,:]=(xi)
+  for inpt in ds:
+    [ xi ]
 #isize=np.shape(xi)
 #print ip
 

@@ -3,7 +3,7 @@ import string
 import math
 import xlrd
 import numpy as np
-
+import random 
 class Neural:
 	def __init__(self, pattern):
 		
@@ -38,7 +38,7 @@ class Neural:
 		# To ensure node weights are randomly assigned, with some bounds on values, we pass it through randomizeMatrix()
 		
 		randomizeMatrix(self.wih,-0.2,0.2)
-		randomizeMatrix(self.who,-2.0,2.0)
+		randomizeMatrix(self.who,-0.2,0.2)
 
 		
 		# To incorporate momentum factor, introduce another array for the 'previous change'.
@@ -160,7 +160,7 @@ def main():
         file_location = r'training_and_testing.xlsx'
         workbook = xlrd.open_workbook(file_location)
         first_sheet = workbook.sheet_by_index(0)
-        for j in range (0,200):
+        for j in range (0,20):
                 xi= [first_sheet.cell_value(j,i) for i in range (30)]
                 print xi
                 ip[j,:]=(xi)
@@ -177,16 +177,12 @@ def main():
                 op[j,:]=(xo)
         #osize=np.shape(xo)
         #print osize
-        #pat = Xi
-	#[
-		#[[.6,.8,0], [0.9]],
-		#[[1,2,2], [1]],
-		#[[0,3,1], [1]],
-		
-	#]
-        '''
-	newNeural = Neural(ip)
-	newNeural.trainNetwork(ip)
-'''
+pat =[	#[[340312.0, -4106.80517877703, 1229.99886467981, -3615.1512912972, 4746.60494432386, -1126.85946267852, -4994.5511993376, 1072.24302584114, 5129.67284099155, 1831.19544219557, -4666.41438985679, -1295.1464529416, 3189.49454365176, 1079.25290374473, -3883.08963996852, -657.969705215838, 2946.27952333516, 1375.17851875269, -3773.9434985484, -1098.12768065403, 2905.53987748025, 1629.92169158342, -2562.89527697157, -1084.4049866216, 2396.5269456676, 1252.91112740275, -2115.31998069169, -1106.05561212881, 1579.4500921482, 947.901762715593], [[1.0, 0.0, 0.0]]], ]
+		[[1,2,2], [1]],
+		[[0,3,1], [1]],
+                       
+newNeural = Neural(pat)
+newNeural.trainNetwork(pat)
+
 if __name__ == "__main__":
 	main()
