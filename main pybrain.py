@@ -3,12 +3,13 @@ from pybrain.datasets import SupervisedDataSet
 ds = SupervisedDataSet(30, 3)
 with open('feature.csv', 'rb') as f:
     results = []
-    for line in f:
-        words = line.split(',')
-        
-        #results.append((words[:30]))
-        results
-        
+    readCSV = csv.reader(csvfile, delimiter=',')
+    x=list(readCSV)
+    x = normalize(x,axis=0,norm='max')
+    x_normed =(x-x.min(0))/x.ptp(0)
+       
+    results.append((x_normed[:30]))
+              
         
 with open('feature1.csv', 'rb') as f:
     result = []

@@ -1,12 +1,11 @@
 from pybrain.datasets import SupervisedDataSet
 ds = SupervisedDataSet(30, 1)
-with open('data.csv', 'rb') as f:
+with open('dataset.csv', 'rb') as f:
     results = []
     for line in f:
       words = line.split(',')
       results.append((words[:30]))
-      '''
-with open('data.csv', 'rb') as f:
+with open('dataset.csv', 'rb') as f:
     result = []
     for line in f:
       words = line.split(',')
@@ -15,7 +14,7 @@ for i in range(0,1200):
  ds.addSample ((results[i]),result[i])
  
 from pybrain.tools.shortcuts import buildNetwork
-from pybrain.structure import TanhLayer
+from pybrain.structure import SigmoidLayer
 from pybrain.structure import SoftmaxLayer
 from pybrain.supervised.trainers import BackpropTrainer
 import matplotlib.pyplot as plt
@@ -44,6 +43,7 @@ from scipy.fftpack import idct
 B = idct(a)
 plt.plot(a)
 plt.show()
+print result
 
 
 print result
@@ -60,4 +60,4 @@ else:
  plt.plot(B)
  plt.title('abnormal')    
  plt.show()
-'''
+
