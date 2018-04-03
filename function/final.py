@@ -8,27 +8,44 @@ from math import exp
 
 #input matrix
 ip = np.empty((20,30))
-file_location = r'I:\Git Hub\ECG clssi\ECG code\training_and_testing 1.xlsx'
+file_location = r'I:\Git Hub\ECG clssi\ECG code\function\DATADCT.xls'
 workbook = xlrd.open_workbook(file_location)
-first_sheet = workbook.sheet_by_index(0)
-for j in range (0,20):
-  xi= [first_sheet.cell_value(j,i) for i in range (30)]
-  print xi
-  ip[j,:]=(xi)
-#isize=np.shape(xi)
-#print ip
+sheet = workbook.sheet_by_index(1)
+sheet1 = workbook.sheet_by_index(2)
 
-'''
-#output matrix
-op = np.empty((200,3))
+num_rows=400#sheet.nrows
+num_cols=30#sheet.ncols
 
-file_location = r'SET1DCT.xls'
-workbook1 = xlrd.open_workbook(file_location)
-second_sheet = workbook.sheet_by_index(1)
-for j in range (0,20):
-  xo= [second_sheet.cell_value(j,i) for i in range (3)]
- # print xo
-  op[j,:]=(xo)
+train=[]
+label=[]
+
+for curr_row in range(0,num_rows,1):
+    row_data=[]
+   
+    for curr_col in range(0,num_cols,1):
+
+        data= sheet.cell_value(curr_row,curr_col)
+        
+        row_data.append(data)
+    
+    train.append(row_data)
+    
+col=1    
+for curr_row in range(0,num_rows,1):
+   
+    row_data1=[]
+    for curr_col in range(0,col,1):
+
+       
+        data1= sheet1.cell_value(curr_row,curr_col)
+       
+        row_data1.append(data1)
+   
+    label.append(row_data1)
+
+
+
+
 # Find the min and max values for each column
 def dataset_minmax(dataset):
 	minmax = list()

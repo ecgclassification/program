@@ -10,17 +10,17 @@ from pybrain.tools.xml import NetworkReader
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score
 
-ds = SupervisedDataSet(30, 3)
-with open('dataset.csv', 'rb') as f:      #importing the dataset.csv for inpt values "first 30"only
+ds = SupervisedDataSet(30, 1)
+with open('datadctip.csv', 'rb') as f:      #importing the dataset.csv for inpt values "first 30"only
     results = []
     for line in f:
         words= line.split(',')
         results.append((words[:30]))
-with open('dataset.csv', 'rb') as f:      #importing the dataset.csv for target values "last 3"only
+with open('datadctop.csv', 'rb') as f:      #importing the dataset.csv for target values "last 3"only
     result = []
     for line in f:
         words = line.split(',')
-        result.append((words[180:]))
+        result.append((words[:1]))
 for i in range(0,10):
     ds.addSample ((results[i]),result[i]) #creating dataset for ANN 
 
@@ -29,7 +29,7 @@ from pybrain.structure import SigmoidLayer
 #from pybrain.structure import SoftmaxLayer
 from pybrain.supervised.trainers import BackpropTrainer
 import matplotlib.pyplot as plt
-net = buildNetwork(30, 60, 3, bias=True, hiddenclass=SigmoidLayer)
+net = buildNetwork(30, 60, 1, bias=True, hiddenclass=SigmoidLayer)
 t = BackpropTrainer(net,ds,learningrate=0.01,momentum=0.5,verbose=True)
 print t
 

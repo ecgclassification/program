@@ -19,7 +19,7 @@ first_sheet = workbook.sheet_by_index(0)
 for j in range (0,400):
   x= [first_sheet.cell_value(j,i) for i in range (180)]
   a[j,:]=dct(x)                 # DCT opratin
-  x= np.append(a[j,:],[1,0,0])
+  x= np.append(a[j,:],[0])
   x1= np.append(x1,[x],axis=0)
 b =x1.shape
 print "normal"
@@ -36,7 +36,7 @@ first_sheet = workbook.sheet_by_index(0)
 for k in range (0,400):
   y= [first_sheet.cell_value(k,l) for l in range (180)]
   b[k,:]=dct(y)
-  y= np.append(b[k,:],[0,1,0])
+  y= np.append(b[k,:],[1])
   y1= np.append(y1,[y],axis=0)
   #print y1
 y2=y1.shape
@@ -53,7 +53,7 @@ first_sheet = workbook.sheet_by_index(0)
 for m in range (0,400):
   z= [first_sheet.cell_value(m,n) for n in range (180)]
   c[m,:]=dct(z)
-  z= np.append(c[m,:],[0,0,1])
+  z= np.append(c[m,:],[2])
   z1= np.append(z1,[z],axis=0)
 z2=z1.shape
 print z2
