@@ -2,49 +2,37 @@ import xlrd
 import numpy as np
 from random import randrange
 from random import random
-
+from csv import reader
 from math import exp
+from sklearn.metrics import confusion_matrix
 
+# Load a CSV file
+def load_csv(filename):
+	dataset = list()
+	with open(filename, 'r') as file:
+		csv_reader = reader(file)
+		for row in csv_reader:
+			if not row:
+				continue
+			dataset.append(row)
+	return dataset
+# Convert string column to float
+def str_column_to_float(dataset, column):
+	for row in dataset:
+		row[column] = float(row[column].strip())
+ 
+# Convert string column to integer
+def str_column_to_int(dataset, column):
+	class_values = [row[column] for row in dataset]
+	unique = set(class_values)
+	lookup = dict()
+	for i, value in enumerate(unique):
+		lookup[value] = i
+	for row in dataset:
+		row[column] = lookup[row[column]]
+	return lookup
 
-#input matrix
-ip = np.empty((20,30))
-file_location = r'I:\Git Hub\ECG clssi\ECG code\function\DATADCT.xls'
-workbook = xlrd.open_workbook(file_location)
-sheet = workbook.sheet_by_index(1)
-sheet1 = workbook.sheet_by_index(2)
-
-num_rows=400#sheet.nrows
-num_cols=30#sheet.ncols
-
-train=[]
-label=[]
-
-for curr_row in range(0,num_rows,1):
-    row_data=[]
-   
-    for curr_col in range(0,num_cols,1):
-
-        data= sheet.cell_value(curr_row,curr_col)
-        
-        row_data.append(data)
-    
-    train.append(row_data)
-    
-col=1    
-for curr_row in range(0,num_rows,1):
-   
-    row_data1=[]
-    for curr_col in range(0,col,1):
-
-       
-        data1= sheet1.cell_value(curr_row,curr_col)
-       
-        row_data1.append(data1)
-   
-    label.append(row_data1)
-
-
-
+ 
 
 # Find the min and max values for each column
 def dataset_minmax(dataset):
@@ -96,7 +84,10 @@ def evaluate_algorithm(dataset, algorithm, n_folds, *args):
 		actual = [row[-1] for row in fold]
 		accuracy = accuracy_metric(actual, predicted)
 		scores.append(accuracy)
+		confusion_matric = confusion_matrix(actual,predicted)
+		print confusion_matric
 	return scores
+    
 
 # Calculate neuron activation for an input
 def activate(weights, inputs):
@@ -164,7 +155,8 @@ def train_network(network, train, l_rate, n_epoch, n_outputs):
 			expected[row[-1]] = 1
 			backward_propagate_error(network, expected)
 			update_weights(network, row, l_rate)
-
+			
+			
 # Initialize a network
 def initialize_network(n_inputs, n_hidden, n_outputs):
 	network = list()
@@ -190,17 +182,27 @@ def back_propagation(train, test, l_rate, n_epoch, n_hidden):
 		prediction = predict(network, row)
 		predictions.append(prediction)
 	return(predictions)
+# Test Backprop on Seeds dataset
 
+# load and prepare data
+filename = r'datadctip.csv'
+dataset = load_csv(filename)
+for i in range(len(dataset[0])-1):
+	str_column_to_float(dataset, i)
+# convert class column to integers
+str_column_to_int(dataset, len(dataset[0])-1)
 
 # normalize input variables
-minmax = dataset_minmax(ip)
-normalize_dataset(ip, minmax)
+
+minmax = dataset_minmax(dataset)
+normalize_dataset(dataset, minmax)
 # evaluate algorithm
-n_folds = 5
+n_folds = 2
 l_rate = 0.3
-n_epoch = 50
-n_hidden = 5
-scores = evaluate_algorithm(ip, back_propagation, n_folds, l_rate, n_epoch, n_hidden)
+n_epoch = 500
+n_hidden = 10
+scores = evaluate_algorithm(dataset, back_propagation, n_folds, l_rate, n_epoch, n_hidden)
 print('Scores: %s' % scores)
 print('Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores))))
-'''
+
+
