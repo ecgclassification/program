@@ -27,15 +27,16 @@ with open('datadctop.csv', 'rb') as f:      #importing the dataset.csv for targe
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+'''
 
 #means = [(-1,0),(2,4),(3,1)]
 #cov = [diag([1,1]), diag([0.5,1.2]), diag([1.5,0.7])]
-'''
+
 for n in xrange(400):
     for klass in range(3):
         input = multivariate_normal(results[klass],result[klass])
         alldata.addSample(input, [klass])
-'''
+
 tstdata, trndata = alldata.splitWithProportion( 0.25 )
 trndata._convertToOneOfMany( )
 tstdata._convertToOneOfMany( )
@@ -84,4 +85,5 @@ for i in range(20):
     draw()  # update the plot
 ioff()
 show()
+'''
 

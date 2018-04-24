@@ -69,32 +69,30 @@ def accuracy_metric(actual, predicted):
 
 # Evaluate an algorithm using a cross validation split
 ###########################################################################################################################################
-def evaluate_algorithm(dataset, algorithm, n_folds, *args):
-	folds = cross_validation_split(dataset, n_folds)
-	scores = list()
-	conmat= list()
-	for fold in folds:
-		train_set = list(folds)
-		train_set.remove(fold)
-		train_set = sum(train_set, [])
-		test_set = list()
-		for row in fold:
-			row_copy = list(row)
-			test_set.append(row_copy)
-			row_copy[-1] = None
-		predicted = algorithm(train_set, test_set, *args)
-		actual = [row[-1] for row in fold]
-		accuracy = accuracy_metric(actual, predicted)
-		scores.append(accuracy)
-		confusion_matric= confusion_matrix(actual,predicted)
-		conmat.append(confusion_matric)
-		#conmat.tolist()
-		print confusion_matric
-
-	return (scores,conmat)
+class test:
+        def __init__(self):
+                folds = cross_validation_split(dataset, n_folds)
+                scores = list()
+                for fold in folds:
+                        train_set = list(folds)
+                        train_set.remove(fold)
+                        train_set = sum(train_set, [])
+                        test_set = list()
+                        for row in fold:
+                                row_copy = list(row)
+                                test_set.append(row_copy)
+                                row_copy[-1] = None
+                        predicted = algorithm(train_set, test_set, *args)
+                        actual = [row[-1] for row in fold]
+                        accuracy = accuracy_metric(actual, predicted)
+                        scores.append(accuracy)
+                        confusion_matric= confusion_matrix(actual,predicted)
+                        print confusion_matric
+                return test
 
 
-    
+        def evaluate_algorithm(dataset, algorithm, n_folds, *args):
+                return Test
 
 # Calculate neuron activation for an input
 def activate(weights, inputs):
@@ -208,9 +206,11 @@ n_folds = 2
 l_rate = 0.3
 n_epoch = 500
 n_hidden = 10
-scores,conmat = evaluate_algorithm(dataset, back_propagation, n_folds, l_rate, n_epoch, n_hidden)
-print('Scores: %s' % scores)                                            # individual acc
-print('Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores))))       #avg acc
-print( conmat[0])                                                       # confusion matrix1
-print( conmat[1])                                                       # confusion matrix2
+T = evaluate_algorithm(dataset, back_propagation, n_folds, l_rate, n_epoch, n_hidden)
+
+print(T,scores)
+print(T.confusion_matric)
+#print('Scores: %s' % scores)
+#print('Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores))))
+
 
