@@ -89,7 +89,7 @@ def evaluate_algorithm(dataset, algorithm, n_folds, *args):
 		confusion_matric= confusion_matrix(actual,predicted)
 		conmat.append(confusion_matric)
 		#conmat.tolist()
-		print confusion_matric
+		print (confusion_matric)
 
 	return (scores,conmat)
 
