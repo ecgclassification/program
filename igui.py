@@ -1,3 +1,4 @@
+#all the libraries needed to run the code
 import sys
 if sys.version_info[0] < 3:
     import Tkinter as Tk
@@ -5,11 +6,11 @@ else:
    import tkinter as tk
 
 import matplotlib
+import matplotlib.pyplot as plt
 matplotlib.use('TkAgg')
 
 import xlrd
 import numpy as np
-import matplotlib.pyplot as plt
 
 from tkinter import *
 from tkinter import messagebox
@@ -23,9 +24,15 @@ from matplotlib.figure import Figure
 
 def write_slogan():
     print("the patient is normal")
+
+
     
 def hello():
-   messagebox.showinfo("RESULT", "THE person is normal")
+   q =' sunny  '
+   messagebox.showinfo("RESULTS", q )
+   msg = tk.Label(root, compound =tk.LEFT, padx = 10, text="sunny")
+   msg.config(bg='lightblue', font=('times', 20, 'italic'))
+   msg.place(x = 550,y =100 ) 
        
 def _quit():
     root.quit()     # stops mainloop
@@ -33,21 +40,21 @@ def _quit():
                     # Fatal Python Error: PyEval_RestoreThread: NULL tstate   
 
                
-                    
 def PVC():
-    img = PhotoImage(file="PVC.gif")
-    canvas.create_image(-15,-10, anchor=NW, image=img)
+    img = PhotoImage(file
+    ="PVC.gif")
+    canvas.create_image(5,-5, anchor=NW, image=img)
     root.mainloop()
-
+    
 def NORMAL():
    img3 = PhotoImage(file="normal.gif")
-   canvas.create_image(-15,-10, anchor=NW, image=img3)
+   canvas.create_image(1,-5, anchor=NW, image=img3)
    canvas.pack(expand = YES, fill = BOTH)
    root.mainloop()
    
 def FUSION():
    img4 = PhotoImage(file="fusion.gif")
-   canvas.create_image(30,-10, anchor=NW, image=img4)
+   canvas.create_image(30,-5, anchor=NW, image=img4)
    root.mainloop()
 
 root = tk.Tk()
@@ -126,14 +133,14 @@ msg2 = tk.Label(root,
               compound =tk.LEFT,
               padx = 10, 
               text='Acurracy:')
-msg2.config(bg='white', font=('times', 20, 'italic'))
+msg2.config(bg='lightblue', font=('times', 20, 'italic'))
 msg2.place(x = 550,y = 20) 
 
 msg3 = tk.Label(root, 
               compound =tk.LEFT,
               padx = 10, 
               text='Confusion Matrix:')
-msg3.config(bg='white', font=('times', 12, 'italic'))
+msg3.config(bg='lightblue', font=('times', 12, 'italic'))
 msg3.place(x = 550,y = 80)            
 
 
@@ -150,12 +157,12 @@ canvas.mpl_connect('key_press_event', on_key_event)
   
        
                            
-                         
+ #various buttons                          
 button = tk.Button(master=root, text='CLEAR',fg="red", command=root.quit)
 button.place(x = 320,y = 400) 
 
-button2 = tk.Button(master=root, padx = 10, text='Classify', command=hello)
-button2.place(x = 550,y = 300) 
+button2 = tk.Button(master=root, padx = 10, text='RESULT', command=hello)
+button2.place(x = 600,y = 300) 
 
 button3 = tk.Button(master=root, padx = 10, text='PVC', command=PVC)
 button3.place(x = 480,y = 350)
@@ -165,9 +172,6 @@ button4.place(x = 560,y = 350)
 
 button5 = tk.Button(master=root, padx = 10, text='FUSION', command=FUSION)
 button5.place(x = 660,y = 350)
-
-button6 = tk.Button(master=root, padx = 10, text='Train', command=hello)
-button6.place(x = 660,y =300) 
 
 mainloop()
 
