@@ -1,0 +1,8 @@
+numpy
+scipy
+matplotlib
+scipy
+sklearn
+scikit-learn
+xlrd
+xlwt

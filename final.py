@@ -239,7 +239,7 @@ print( conmat[0])                                                       # confus
 print( conmat[1])                                                       # confusion matrix2
 
 
-###########################gui
+###########################-------------gui-------------------##############################
 
 a=np.array(conmat[0])
 b=np.array(conmat[1])
@@ -330,10 +330,10 @@ img6 = PhotoImage(file="ecg.gif")
 canvas.create_image(30,10, anchor=NW, image=img6)
 
 img7 = PhotoImage(file="VAT.gif")
-canvas.create_image(530,220, anchor=NW, image=img7)
+canvas.create_image(540,-250, anchor=NW, image=img7)
 
 img8 = PhotoImage(file="VAT.gif")
-canvas.create_image(530,100, anchor=NW, image=img8)
+canvas.create_image(540,-130, anchor=NW, image=img8)
 
 
 def motion(event):
