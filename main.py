@@ -234,7 +234,7 @@ n_hidden = 10
 scores,conmat = evaluate_algorithm(dataset, back_propagation, n_folds, l_rate, n_epoch, n_hidden)
 print('Scores: %s' % scores) 
 s=(sum(scores)/float(len(scores)))                                           # individual acc
-print('Mean Accuracy: %.3f%%' % s)       #avg acc
+print('Mean Accuracy: %.3f%%' % s)                                      # avg acc
 print( conmat[0])                                                       # confusion matrix1
 print( conmat[1])                                                       # confusion matrix2
 
